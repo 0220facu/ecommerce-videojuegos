@@ -1,0 +1,39 @@
+.navbar-custom {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(200, 229, 255);
+    padding: .4rem;
+}
+
+.logo-nombre-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar-custom .logo {
+    width: 5rem;
+    height: auto !important; 
+    cursor: pointer;
+}
+
+.navbar-custom .nombre {
+    letter-spacing: 1px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.login-button-nav {
+    /* margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto; */
+}
+
+/* PARTE DEL MENU */
+
+.menu {
+    background-color: rgb(14, 125, 223);
+    padding: .8rem;
+    display: flex;
+}
