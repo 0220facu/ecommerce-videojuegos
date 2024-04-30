@@ -2,7 +2,7 @@ import { useState } from "react";
 import viteLogo from "/vite.svg";
 import "./styles/styles.css";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Homepage from "./pages/Homepage";
+import Homepage from "./pages/Homepage/Homepage";
   
 function App() {
 
