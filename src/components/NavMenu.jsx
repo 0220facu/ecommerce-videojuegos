@@ -4,12 +4,16 @@ import { Button } from "@radix-ui/themes";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import classNames from "classnames";
 import React from 'react';
+import './NavMenu.css';
 
 const NavMenu = () => {
   return (
     <nav>
       <div className="navbar-custom">
-        <img className="logo" src={Logo} />
+        <figure className="logo-nombre">
+          <img className="logo" src={Logo} />
+          <h1 className="nombre">Ecommerce</h1>
+        </figure>
         <div className="login-button-nav">
           <Button>
             <PersonIcon />
@@ -17,6 +21,7 @@ const NavMenu = () => {
           </Button>
         </div>
       </div>
+
       <div className="menu">
       <NavigationMenu.Root className="NavigationMenuRoot">
       <NavigationMenu.List className="NavigationMenuList">
@@ -95,6 +100,8 @@ const NavMenu = () => {
     </nav>
   );
 };
+
+
 const ListItem = React.forwardRef(({ className, children, title, ...props }, forwardedRef) => (
   <li>
     <NavigationMenu.Link asChild>

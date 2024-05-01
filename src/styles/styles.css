@@ -4,21 +4,3 @@ body {
   padding: 0px !important;
   margin: 0px !important;
 }
-
-.navbar-custom {
-  display: flex;
-  height: 6rem;
-  background-color: rgb(200, 229, 255);
-  padding: 0.6rem 10%;
-
-}
-
-.navbar .logo {
-  width: 5rem;
-  height: auto !important;
-}
-.login-button-nav{
-  margin-left: auto;
-  margin-top: auto;
-  margin-bottom: auto;
-}
