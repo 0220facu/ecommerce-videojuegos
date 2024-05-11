@@ -8,6 +8,8 @@ import React from "react";
 import NavMenu from "../../components/navMenu";
 import Carousel from "react-bootstrap/Carousel";
 import SlideImg from "../../Img/slide.jpg";
+import ProductCard from "../../components/ProductCard/ProductCard";
+
 const Homepage = () => {
   return (
     <>
@@ -42,6 +44,9 @@ const Homepage = () => {
           </Carousel.Item>
         </Carousel>
       </div>
+ <div>
+  <ProductCard/>
+ </div>
     </>
   );
 };
