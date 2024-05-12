@@ -1,4 +1,4 @@
-import Logo from "../Img/logo.png";
+import Logo from "../../Img/logo.png";
 import PersonIcon from "@mui/icons-material/Person";
 import { Button } from "@radix-ui/themes";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";

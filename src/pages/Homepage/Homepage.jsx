@@ -5,19 +5,20 @@ import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import classNames from "classnames";
 import "./Homepage.css";
 import React from "react";
-import NavMenu from "../../components/navMenu";
+import NavMenu from "../../components/NavMenu/NavMenu";
 import Carousel from "react-bootstrap/Carousel";
 import SlideImg from "../../Img/slide.jpg";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import Footer from "../../components/Footer/Footer";
 
 const Homepage = () => {
   return (
     <>
       <NavMenu />
-      <div>
+      <div className="carrusel-contenedor">
         <Carousel>
           <Carousel.Item>
-          <img src={SlideImg}/>
+            <img className="carrusel-imagen" src={SlideImg} />
 
             <Carousel.Caption>
               <h3>First slide label</h3>
@@ -25,7 +26,7 @@ const Homepage = () => {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-          <img src={SlideImg}/>
+            <img className="carrusel-imagen" src={SlideImg} />
 
             <Carousel.Caption>
               <h3>Second slide label</h3>
@@ -33,7 +34,7 @@ const Homepage = () => {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-          <img src={SlideImg}/>
+            <img className="carrusel-imagen" src={SlideImg} />
 
             <Carousel.Caption>
               <h3>Third slide label</h3>
@@ -44,9 +45,14 @@ const Homepage = () => {
           </Carousel.Item>
         </Carousel>
       </div>
- <div>
-  <ProductCard/>
- </div>
+      <div className="productos-contenedor">
+        {[...Array(12)].map((_, i) => (
+          <ProductCard key={i} />
+        ))}
+      </div>
+      <div>
+        <Footer />
+      </div>
     </>
   );
 };

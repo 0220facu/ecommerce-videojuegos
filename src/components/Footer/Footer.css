@@ -1,0 +1,38 @@
+.footer-contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    background: rgb(51,88,212);
+    background: linear-gradient(90deg, rgba(51,88,212,1) 0%, rgba(46,46,189,1) 50%, rgba(109,34,247,1) 74%);
+    padding: .4rem;
+    color: white;
+    font-weight: 800;
+    font-size: 1.2rem; 
+}
+
+.footer-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 49%;
+}
+
+.footer-lista {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+
+.footer-imagen {
+    width: 11rem;
+}
+
+.footer-texto {
+    margin-left: 20px;
+}

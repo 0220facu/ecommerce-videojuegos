@@ -10,6 +10,16 @@ p {
   all: unset;
 }
 
+.carrusel-contenedor {
+  width: 80%;
+  margin: auto;
+}
+
+.carrusel-imagen {
+  
+  width: 100%;
+}
+
 .List {
   display: grid;
   padding: 22px;
@@ -203,4 +213,14 @@ p {
   to {
     opacity: 0;
   }
+}
+
+
+.productos-contenedor {
+  display: grid;
+  grid-template-columns: repeat(4, 240px);
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-block: 200px;
 }
