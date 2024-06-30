@@ -1,0 +1,114 @@
+form {
+    border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+.input-login {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 14px;
+}
+.input-login-50{
+    width: 45%;
+   margin-left: auto;
+   margin-right:auto ;
+
+}
+.form-login{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10rem;
+    border-radius: 20px;
+    padding: 2rem;
+    background-color: rgb(240, 240, 240);
+}
+.flex-column{
+    display: flex;
+    flex-direction: column; 
+}
+.login-inputs {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+/* Set a style for all buttons */
+.login-button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+    width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    text-align: center;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+.form-err {
+    color: red;
+    font-size: 20px;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+img.avatar {
+    width: 10rem;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+@media (max-width: 1000px) {
+    .input-login-50{
+        width: 100%;
+    }
+    .login-button {
+        background-color: #04AA6D;
+        color: white;
+        padding: 15px;
+        border: none;
+        cursor: pointer;
+        width: 10rem;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 20px;
+        text-align: center;
+    }
+    
+  }
+  .mx-auto{
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .text-center{
+    text-align: center;
+  }
