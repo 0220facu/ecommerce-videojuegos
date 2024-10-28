@@ -5,7 +5,7 @@ import NavMenu from "../../components/NavMenu/NavMenu";
 
 const ProductForm = ({ product = null, onSubmitSuccess }) => {
   const [nombre, setNombre] = useState('');
-  const [esConsola, setEsConsola] = useState(0);
+  const [esConsola, setEsConsola] = useState(false);
   const [precioUnitario, setPrecioUnitario] = useState(0);
   const [stock, setStock] = useState(0);
   const [imagen, setImagen] = useState('');  
@@ -24,7 +24,7 @@ const ProductForm = ({ product = null, onSubmitSuccess }) => {
     e.preventDefault();
     const url = product ? 'http://localhost:5217/api/Producto/actualizar' : 'http://localhost:5217/api/Producto/insertar';
     const method = product ? 'PUT' : 'POST';
-    const data = { Producto_Id: product.producto_Id,nombre, esConsola, precioUnitario, stock ,imagen,Descripcion:"" };
+    const data = { Producto_Id: product?.producto_Id?product?.producto_Id :0 ,nombre, esConsola,esVideojuego:!esConsola, precioUnitario, stock ,imagen,Descripcion:"" };
 
     try {
       const response = await fetch(url, {
@@ -75,11 +75,11 @@ const ProductForm = ({ product = null, onSubmitSuccess }) => {
           <fieldset>
             <legend><b>Tipo de Producto</b></legend>
             <label>
-              <input type="radio" name="productType" checked={esConsola === 1} onChange={() => setEsConsola(1)} />
+              <input type="radio" name="productType" checked={esConsola === true} onChange={() => setEsConsola(true)} />
               Consola
             </label>
             <label>
-              <input type="radio" name="productType" checked={esConsola === 0} onChange={() => setEsConsola(0)} />
+              <input type="radio" name="productType" checked={esConsola === false} onChange={() => setEsConsola(false)} />
               Videojuego
             </label>
           </fieldset>

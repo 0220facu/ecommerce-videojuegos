@@ -8,6 +8,7 @@ import NavMenu from "../../components/NavMenu/NavMenu";
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [keepLoggedIn, setKeepLoggedIn] = useState(false);  // Estado para mantener la sesión iniciada
   const [error, setError] = useState('');
   const { login } = useAuth(); // Usar la función login del contexto
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Login = () => {
     e.preventDefault();
     setError(''); // Limpiar errores previos
     try {
-      await login(email, password); // Intentar iniciar sesión con email y password
+      await login(email, password, keepLoggedIn); // Pasar keepLoggedIn a la función login
       navigate('/'); // Navegar a la página de inicio después de un login exitoso
     } catch (error) {
       setError(error.message || 'Falló el inicio de sesión'); // Mostrar mensaje de error si falla el login
@@ -25,7 +26,7 @@ const Login = () => {
 
   return (
     <>
-    <NavMenu></NavMenu>
+      <NavMenu></NavMenu>
       <div className='flex-column'>
         <form className='form-login' onSubmit={handleSubmit}>
           <div className="imgcontainer">
@@ -56,6 +57,14 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+
+            <label>
+              <input
+                type="checkbox"
+                checked={keepLoggedIn}
+                onChange={() => setKeepLoggedIn(!keepLoggedIn)}
+              /> Mantener sesión iniciada
+            </label>
 
             <button className='login-button' type="submit">Login</button>
           </div>

@@ -52,18 +52,18 @@ export function AuthProvider({ children }) {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
-      body: JSON.stringify({ email, password, carrito: [] })
+      body: JSON.stringify({ email, password, carrito: [] ,rol:"user"})
     });
     const data = await response.json();
     if (response.ok) {
-      saveUser({ email, password, carrito: [] });  // Guardar usuario en estado y localStorage
+      saveUser({ email, password, carrito: [] ,rol:"user"});  // Guardar usuario en estado y localStorage
       agregarRegistro("Registro usuario", data);
     } else {
       throw new Error(data.message);
     }
   }
 
-  async function login(email, password) {
+  async function login(email, password, keepLoggedIn) {
     const url = 'http://localhost:5217/api/Usuario/autenticar';
     const response = await fetch(url, {
       method: 'POST',
@@ -71,16 +71,21 @@ export function AuthProvider({ children }) {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
-      body: JSON.stringify({ email, password, carrito: [] })
+      body: JSON.stringify({ email, password, carrito: [] ,rol:""})
     });
     const data = await response.json();
     if (response.ok) {
-      saveUser(data);  // Guardar usuario en estado y localStorage
+      if (keepLoggedIn) {
+        saveUser(data);  // Guardar usuario en localStorage
+      } else {
+        setCurrentUser(data);  // Solo guardar usuario en estado de React
+      }
       agregarRegistro("Inicio sesión", data);
     } else {
       throw new Error(data.message);
     }
   }
+  
 
   function logout() {
     localStorage.removeItem('user');

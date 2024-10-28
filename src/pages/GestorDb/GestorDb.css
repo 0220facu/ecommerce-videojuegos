@@ -1,0 +1,48 @@
+/* GestorDb.css */
+
+.gestor-db-container {
+    text-align: center;
+    margin-top: 100px;
+    background-color: #f0f4f8; /* Fondo claro */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .error-message-box {
+    margin-bottom: 20px;
+  }
+  
+  .error-icon {
+    font-size: 50px;
+    color: #f44336; /* Color rojo para el icono de error */
+  }
+  
+  .error-message {
+    margin-top: 10px;
+    color: #f44336; /* Color rojo para el mensaje de error */
+  }
+  .success-message-box {
+    margin-bottom: 20px;
+  }
+  
+  .success-icon {
+    font-size: 50px;
+    color: #4caf50; /* Color verde para el icono de éxito */
+  }
+  
+  .success-message {
+    margin-top: 10px;
+    color: #4caf50; /* Color verde para el mensaje de éxito */
+  }
+  .button {
+    margin: 0 10px;
+    font-size: 16px;
+    background-color: #00bcd4; /* Color celeste para los botones */
+    color: #ffffff; /* Color blanco para el texto de los botones */
+  }
+  
+  .button + .button {
+    margin-left: 10px;
+  }
+  
