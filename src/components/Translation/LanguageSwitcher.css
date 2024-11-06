@@ -1,0 +1,46 @@
+/* LanguageSwitcher.css */
+
+.language-switcher-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    position: relative;
+    top: -5px; /* Ajusta este valor para moverlo más arriba o abajo */
+  }
+  
+  .ToggleGroupRoot {
+    display: inline-flex;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .ToggleGroupItem {
+    background-color: white;
+    color: black;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+  
+  .ToggleGroupItem:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .ToggleGroupItem[data-state='on'] {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .ToggleGroupItem:first-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+  
+  .ToggleGroupItem:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+  

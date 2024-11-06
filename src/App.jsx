@@ -15,6 +15,8 @@ import theme from "./theme";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from '@mui/material/styles';
 import ErrorPage from "./pages/ErrorPage/ErrorPage.jsx";
+import Permisos from "./pages/Roles/Permisos.jsx";
+
 function App() {
   return (
     <>
@@ -23,6 +25,7 @@ function App() {
 
         <Routes>
         <Route path="/error" element={<ErrorPage />} />
+        <Route path="/permisos" element={<Permisos />} />
 
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Login />} />
@@ -30,7 +33,7 @@ function App() {
           <Route
             path="/bitacora"
             element={
-              <PrivateRoute>
+              <PrivateRoute >
                 <Bitacora />
               </PrivateRoute>
             }
@@ -62,7 +65,7 @@ function App() {
           <Route
             path="/gestorDb"
             element={
-              <PrivateRoute requiredRole="webmaster">
+              <PrivateRoute requiredRole="Web Master">
                 <GestorDb />
               </PrivateRoute>
             }

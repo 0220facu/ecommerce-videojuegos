@@ -19,7 +19,7 @@ const Homepage = () => {
   const verificarIntegridad = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5217/api/Registro/verificar-integridad"
+        "http://localhost:5217/api/Registro/verificar-registro"
       );
       const data = await response.json();
       if (response.ok) {
@@ -34,7 +34,7 @@ const Homepage = () => {
   const verificarIntegridadProducto = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5217/api/Producto/verificar-integridad"
+        "http://localhost:5217/api/Producto/verificar-producto"
       );
       const data = await response.json();
       if (response.ok) {
