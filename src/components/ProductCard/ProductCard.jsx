@@ -1,4 +1,4 @@
-import React from 'react';
+import {React,useState,useEffect} from 'react';
 import './ProductCard.css';
 import { Box, Card, Inset, Text, Button } from "@radix-ui/themes";
 import ImgTest from '../../Img/logo.png';
@@ -6,8 +6,53 @@ import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
+  const [userRoles, setUserRoles] = useState([]);
   const { currentUser, agregarRegistro } = useAuth();
   const navigate = useNavigate();
+  useEffect(() => {
+    const obtenerPermisosUsuario = async () => {
+      if (currentUser && currentUser.email) {
+        try {
+          const response = await fetch(
+            `http://localhost:5217/api/Permiso/leer-permiso-usuario/${encodeURIComponent(
+              currentUser.email
+            )}`
+          );
+          if (!response.ok) {
+            throw new Error("Error al obtener los permisos del usuario");
+          }
+          const permisosData = await response.json();
+
+          // Función recursiva para extraer los nombres de todos los permisos
+          const extraerNombresPermisos = (permisos) => {
+            let nombres = [];
+            for (const permiso of permisos) {
+              nombres.push(permiso.nombrePermiso);
+              if (permiso.permisosHijos && permiso.permisosHijos.length > 0) {
+                nombres = nombres.concat(
+                  extraerNombresPermisos(permiso.permisosHijos)
+                );
+              }
+            }
+            return nombres;
+          };
+
+          const permisosUsuario = extraerNombresPermisos(permisosData);
+          setUserRoles(permisosUsuario);
+        } catch (error) {
+          console.error(
+            "Error al obtener los permisos del usuario:",
+            error
+          );
+          // Maneja el error según sea necesario
+        } finally {
+        }
+      } else {
+      }
+    };
+
+    obtenerPermisosUsuario();
+  }, [currentUser]);
 
   const handleEdit = () => {
     navigate(`/edit-product/${product.producto_Id}`, { state: { product } });
@@ -68,7 +113,9 @@ const ProductCard = ({ product }) => {
       navigate("/login");
     }
   };
-
+  const tienePermiso = (permisoRequerido) => {
+    return userRoles.includes(permisoRequerido);
+  };
   return (
     <Box maxWidth="240px">
       <Card size="2">
@@ -94,8 +141,9 @@ const ProductCard = ({ product }) => {
         </Text>
         <br />
         <Button className='button-buy' color="green" variant="soft" onClick={handleBuy}>Comprar</Button>
-        {currentUser && (
+        {currentUser && tienePermiso("Modificar") && (
           <>
+
             <Button className='button-edit' color="blue" variant="soft" onClick={handleEdit}>Editar</Button>
             <Button className='button-delete' color="red" variant="soft" onClick={handleDelete}>Eliminar</Button>
           </>

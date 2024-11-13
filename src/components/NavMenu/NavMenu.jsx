@@ -117,12 +117,22 @@ const NavMenu = () => {
                   {translationService.translate('gestorWebmaster')}
                 </Button>
               )}
-              {tienePermiso("Admin") && (
+              {tienePermiso("Alta") && (
                 <>
                   <Button onClick={() => navigate("/add-product")}>
                     <AddBoxIcon />
                     {translationService.translate('crearProducto')}
-                  </Button>
+                  </Button></>
+                )}
+                {tienePermiso("Idioma") && (
+                <>
+                  <Button className="ms-3"onClick={() => navigate("/idiomas")}>
+                    <AddBoxIcon />
+                    {translationService.translate('Idiomas')}
+                  </Button></>
+                )}
+                {tienePermiso("Bitacora") && (
+                <>
                   <Button
                     style={{ marginLeft: "10px" }}
                     onClick={() => navigate("/bitacora")}
@@ -130,7 +140,10 @@ const NavMenu = () => {
                     <AutoStoriesIcon />
                     {translationService.translate('bitacora')}
                   </Button>
-                  <Button
+                  </>
+                     )}
+
+                  {tienePermiso("Permisos") && (  <> <Button
                     style={{ marginLeft: "10px" }}
                     onClick={() => navigate("/permisos")}
                   >

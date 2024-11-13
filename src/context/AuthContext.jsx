@@ -56,7 +56,7 @@ export function AuthProvider({ children }) {
     });
     const data = await response.json();
     if (response.ok) {
-      saveUser({ email, password, carrito: [] ,rol:"user"});  // Guardar usuario en estado y localStorage
+      // saveUser({ email, password, carrito: [] ,rol:"user"});  // Guardar usuario en estado y localStorage
       agregarRegistro("Registro usuario", data);
     } else {
       throw new Error(data.message);
