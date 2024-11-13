@@ -1,0 +1,23 @@
+.product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px;
+    margin: auto;
+  }
+  
+  .product-form input,
+  .product-form button {
+    padding: 8px;
+    margin-top: 5px;
+  }
+  
+  .product-form fieldset {
+    border: none;
+    padding: 0;
+  }
+  
+  .product-form label {
+    display: block;
+  }
+  

@@ -1,0 +1,59 @@
+/* Permisos.css */
+/* Permisos.css */
+
+.permisos-title {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .ant-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .ant-form-item {
+    margin-bottom: 1rem;
+  }
+  
+.permisos-container {
+    margin: 20px auto; /* Márgenes superior e inferior, y centrado horizontal */
+    max-width: 1200px; /* Ancho máximo del contenido */
+    padding: 20px; /* Relleno alrededor del contenido */
+  }
+  
+
+  
+  .permisos-content {
+    display: flex;
+    flex-wrap: wrap; /* Permite ajuste en pantallas más pequeñas */
+    gap: 20px; /* Espacio entre los elementos */
+  }
+  
+  .permisos-tree {
+    flex: 1 1 300px; /* El árbol ocupa espacio flexible, mínimo 300px */
+    max-width: 400px; /* Ancho máximo del árbol */
+  }
+  
+  .permisos-forms {
+    flex: 2 1 500px; /* Los formularios ocupan más espacio */
+  }
+  
+  .permisos-forms h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .permisos-forms .ant-form-inline .ant-form-item {
+    margin-right: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .permisos-content {
+      flex-direction: column;
+    }
+  
+    .permisos-tree,
+    .permisos-forms {
+      max-width: 100%;
+    }
+  }
+  
