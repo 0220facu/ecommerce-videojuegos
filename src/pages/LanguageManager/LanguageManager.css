@@ -1,0 +1,17 @@
+.translation-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .translation-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .translation-item strong {
+    margin-right: 8px;
+  }
+  

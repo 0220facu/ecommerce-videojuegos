@@ -16,7 +16,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from '@mui/material/styles';
 import ErrorPage from "./pages/ErrorPage/ErrorPage.jsx";
 import Permisos from "./pages/Roles/Permisos.jsx";
-
+import LanguageManager from "./pages/LanguageManager/LanguageManager.jsx";
 function App() {
   return (
     <>
@@ -41,7 +41,7 @@ function App() {
           <Route
             path="/add-product"
             element={
-              <PrivateRoute requiredRole="admin">
+              <PrivateRoute requiredRole="Alta">
                 <ProductForm />
               </PrivateRoute>
             }
@@ -65,13 +65,21 @@ function App() {
           <Route
             path="/gestorDb"
             element={
-              <PrivateRoute requiredRole="Web Master">
+              // <PrivateRoute requiredRole="Web Master">
                 <GestorDb />
-              </PrivateRoute>
+              // </PrivateRoute>
+            }
+          />
+          <Route
+            path="/idiomas"
+            element={
+              // <PrivateRoute requiredRole="Web Master">
+                <LanguageManager />
+              // </PrivateRoute>
             }
           />
         </Routes>
-      </ThemeProvider>
+        </ThemeProvider>
     </>
   );
 }

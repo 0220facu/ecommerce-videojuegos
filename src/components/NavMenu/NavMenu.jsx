@@ -130,6 +130,13 @@ const NavMenu = () => {
                     <AutoStoriesIcon />
                     {translationService.translate('bitacora')}
                   </Button>
+                  <Button
+                    style={{ marginLeft: "10px" }}
+                    onClick={() => navigate("/permisos")}
+                  >
+                    <AutoStoriesIcon />
+                    {translationService.translate('permisos')}
+                  </Button>
                 </>
               )}
               {tienePermiso("Usuario") && (

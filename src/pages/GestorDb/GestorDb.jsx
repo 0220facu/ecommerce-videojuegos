@@ -49,7 +49,7 @@ function GestorDb() {
       } else {
         setIntegrityMessage(data.mensaje);
         console.log(data); // Asegúrate de que los datos se están imprimiendo correctamente aquí
-        setCompromisedRecords(data.registrosComprometidos);
+        setCompromisedRecords(data.detalles);
         setError(true);
       }
     } catch (error) {
@@ -66,7 +66,7 @@ function GestorDb() {
       const data = await response.json();
       if (response.ok) {
       } else {
-        setCompromisedRecordsProducto(data.registrosComprometidos);
+        setCompromisedRecordsProducto(data.detalles);
         setError(true);
       }
     } catch (error) {
@@ -102,7 +102,7 @@ function GestorDb() {
   const recalcularDigitoProducto = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5217/api/Producto/recalcular-y-guardar-digitos",
+        "http://localhost:5217/api/Producto/recalcular-producto",
         { method: "POST" }
       );
       if (response.ok) {
@@ -118,7 +118,7 @@ function GestorDb() {
   const recalcularDigitoBitacora = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5217/api/Registro/recalcular-y-guardar-digitos",
+        "http://localhost:5217/api/Registro/recalcular-registro",
         { method: "POST" }
       );
       if (response.ok) {
@@ -190,34 +190,25 @@ function GestorDb() {
             {compromisedRecords?.map((record) => {
               return (
                 <>
-                {record.tipoDiscrepancia === "Registros eliminados" && (
-                  <Typography variant="p" className="error-message">Se eliminaron {record.cantidadDiscrepancia} registros</Typography>
+                 {record.idRegistro && (
+                    <Typography variant="p" className="error-message">Registro con id {record.idRegistro} modificado</Typography>
+                  )}
+                {!record.idRegistro  && (
+                  <Typography variant="p" className="error-message">{record.mensaje}</Typography>
                 )}
-                {record.tipoDiscrepancia === "Registros agregados" && (
-                  <Typography variant="p" className="error-message">Se agregaron {record.cantidadDiscrepancia} registros</Typography>
-                )}
-                {record.tipoDiscrepancia === "Dígito horizontal no coincide" && (
-                  <Typography variant="p" className="error-message">
-                    Se modifico el registro con id: {record.id} en la tabla  {record.tabla}
-                  </Typography>
-                )}
+                
                </>
               );
             })}
             {compromisedRecordsProducto?.map((record) => {
               return (
                 <>
-                  {record.tipoDiscrepancia === "Productos eliminados" && (
-                    <Typography variant="p" className="error-message">Se eliminaron {record.cantidadDiscrepancia} Productos</Typography>
+                  {record.idRegistro && (
+                    <Typography variant="p" className="error-message">Registro con id {record.idRegistro} modificado</Typography>
                   )}
-                  {record.tipoDiscrepancia === "Productos agregados" && (
-                    <Typography variant="p" className="error-message">Se agregaron {record.cantidadDiscrepancia} Productos</Typography>
-                  )}
-                  {record.tipoDiscrepancia === "Dígito horizontal no coincide" && (
-                    <Typography variant="p" className="error-message">
-                      Se modifico el registro con id: {record.id} en la tabla  {record.tabla}
-                    </Typography>
-                  )}
+                  {!record.idRegistro  && (
+                  <Typography variant="p" className="error-message">{record.mensaje}</Typography>
+                )}
                  </>
               );
             })}

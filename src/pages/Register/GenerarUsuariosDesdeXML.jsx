@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Upload, Button, Table, message, Card } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import XMLParser from 'react-xml-parser';
+import { useAuth } from '../../context/AuthContext'; // Importa el contexto de autenticación
 
 const GenerarUsuariosDesdeXML = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [archivoSeleccionado, setArchivoSeleccionado] = useState(null);
+  const { register } = useAuth(); // Utiliza la función de registro del contexto de autenticación
 
   const propsUpload = {
     beforeUpload: (file) => {
@@ -20,10 +22,9 @@ const GenerarUsuariosDesdeXML = () => {
           const xml = new XMLParser().parseFromString(e.target.result);
           const usuariosXML = xml.getElementsByTagName('usuario');
           const usuariosData = usuariosXML.map((usuario) => {
-            const nombreUsuario = usuario.getElementsByTagName('nombreUsuario')[0]?.value || '';
             const email = usuario.getElementsByTagName('email')[0]?.value || '';
             const password = usuario.getElementsByTagName('password')[0]?.value || '';
-            return { nombreUsuario, email, password };
+            return { email, password };
           });
           setUsuarios(usuariosData);
           message.success('Archivo XML cargado correctamente');
@@ -33,7 +34,6 @@ const GenerarUsuariosDesdeXML = () => {
         }
       };
       reader.readAsText(file);
-      // Evitar que se suba el archivo automáticamente
       return false;
     },
     onRemove: () => {
@@ -44,11 +44,6 @@ const GenerarUsuariosDesdeXML = () => {
   };
 
   const columnas = [
-    {
-      title: 'Nombre de Usuario',
-      dataIndex: 'nombreUsuario',
-      key: 'nombreUsuario',
-    },
     {
       title: 'Correo Electrónico',
       dataIndex: 'email',
@@ -62,27 +57,19 @@ const GenerarUsuariosDesdeXML = () => {
   ];
 
   const crearUsuarios = async () => {
-    try {
-      // Ajusta la URL del endpoint según tu backend
-      const response = await fetch('http://localhost:5217/api/Usuario/crear-multiples', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(usuarios),
-      });
-
-      if (!response.ok) {
-        throw new Error('Error al crear los usuarios');
+    for (const usuario of usuarios) {
+      const { email, password } = usuario;
+      try {
+        await register(email, password); // Llama a la función `register` del contexto
+        message.success(`Usuario ${email} registrado exitosamente`);
+      } catch (error) {
+        console.error(`Error al registrar ${email}:`, error);
+        message.error(`Error al registrar ${email}: ${error.message}`);
       }
-
-      message.success('Usuarios creados exitosamente');
-      setUsuarios([]);
-      setArchivoSeleccionado(null);
-    } catch (error) {
-      console.error('Error al crear los usuarios:', error);
-      message.error('Error al crear los usuarios');
     }
+    // Limpia la lista de usuarios y el archivo seleccionado después de completar el proceso
+    setUsuarios([]);
+    setArchivoSeleccionado(null);
   };
 
   return (

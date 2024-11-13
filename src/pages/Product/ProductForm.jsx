@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ProductForm.css';  // Asegúrate de copiar los estilos relevantes de Login.css o Register.css a ProductForm.css
 import Logo from '../../Img/logo.png';  // Asume que usas el mismo logo para consistencia
 import NavMenu from "../../components/NavMenu/NavMenu";
-
+import DolarRates from '../../components/DolarRates/DolarRates';
 const ProductForm = ({ product = null, onSubmitSuccess }) => {
   const [nombre, setNombre] = useState('');
   const [esConsola, setEsConsola] = useState(false);
@@ -46,6 +46,7 @@ const ProductForm = ({ product = null, onSubmitSuccess }) => {
   return (<>
   <NavMenu />
     <div className='flex-column'>
+      <DolarRates/>
       <form className='form-login' onSubmit={handleSubmit}>
         <div className="imgcontainer">
           <img src={Logo} alt="Logo" className="avatar" />

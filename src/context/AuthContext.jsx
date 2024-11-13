@@ -77,10 +77,15 @@ export function AuthProvider({ children }) {
     if (response.ok) {
       if (keepLoggedIn) {
         saveUser(data);  // Guardar usuario en localStorage
+        const timer = setTimeout(() => {
+          agregarRegistro("Inicio sesión", data);
+        }, 20000); // 20000 milisegundos = 20 segundos
+    
+        // Limpia el temporizador si el componente se desmonta antes de los 20 segundos
+        return () => clearTimeout(timer);
       } else {
         setCurrentUser(data);  // Solo guardar usuario en estado de React
       }
-      agregarRegistro("Inicio sesión", data);
     } else {
       throw new Error(data.message);
     }

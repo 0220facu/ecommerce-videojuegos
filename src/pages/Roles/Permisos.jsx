@@ -127,10 +127,10 @@ const Permisos = () => {
   };
 
   const asociarPermiso = async (values) => {
-    const { nombreUsuario, idPermiso } = values;
+    const { email, idPermiso } = values;
     try {
       const response = await fetch(
-        `http://localhost:5217/api/Permiso/asociar/${encodeURIComponent(nombreUsuario)}/${idPermiso}`,
+        `http://localhost:5217/api/Permiso/asociar/${encodeURIComponent(email)}/${idPermiso}`,
         {
           method: 'POST',
         }
@@ -147,10 +147,10 @@ const Permisos = () => {
   };
 
   const quitarPermiso = async (values) => {
-    const { nombreUsuario, idPermiso } = values;
+    const { email, idPermiso } = values;
     try {
       const response = await fetch(
-        `http://localhost:5217/api/Permiso/quitar/${encodeURIComponent(nombreUsuario)}/${idPermiso}`,
+        `http://localhost:5217/api/Permiso/quitar/${encodeURIComponent(email)}/${idPermiso}`,
         {
           method: 'POST',
         }
@@ -160,7 +160,7 @@ const Permisos = () => {
       }
       message.success(translationService.translate('permisoQuitadoExitosamente'));
       // Actualizar la lista de permisos directos del usuario
-      handleUsuarioSeleccionado(nombreUsuario);
+      handleUsuarioSeleccionado(email);
       formQuitarPermiso.resetFields();
     } catch (error) {
       console.error('Error al quitar el permiso:', error);
@@ -193,15 +193,15 @@ const Permisos = () => {
   };
 
   // Función para manejar la selección de un usuario en "Quitar Permiso de Usuario"
-  const handleUsuarioSeleccionado = async (nombreUsuario) => {
-    if (!nombreUsuario) {
+  const handleUsuarioSeleccionado = async (email) => {
+    if (!email) {
       setPermisosUsuarioDirectos([]);
       formQuitarPermiso.setFieldsValue({ idPermiso: undefined });
       return;
     }
     try {
       const response = await fetch(
-        `http://localhost:5217/api/Permiso/leer-permiso-usuario/${encodeURIComponent(nombreUsuario)}`
+        `http://localhost:5217/api/Permiso/leer-permiso-usuario/${encodeURIComponent(email)}`
       );
       if (!response.ok) {
         throw new Error('Error al obtener permisos del usuario');
@@ -228,16 +228,9 @@ const Permisos = () => {
     const { idPermisoPadre, idPermisoHijo } = values;
     try {
       const response = await fetch(
-        `http://localhost:5217/api/Permiso/AsociarPermiso`,
+        `http://localhost:5217/api/Permiso/AsociarPermiso?idPadre=${idPermisoPadre}&idHijo=${idPermisoHijo}`,
         {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            idPadre: idPermisoPadre,
-            idHijo: idPermisoHijo,
-          }),
         }
       );
       if (!response.ok) {
@@ -251,7 +244,7 @@ const Permisos = () => {
       message.error(translationService.translate('errorAsociarPermiso'));
     }
   };
-
+  
   const quitarPermisoAPermiso = async (values) => {
     const { idPermisoPadre, idPermisoHijo } = values;
     try {
@@ -310,14 +303,14 @@ const Permisos = () => {
                 <Card title={translationService.translate('asociarPermisoUsuario')} bordered={false}>
                   <Form form={formAsociarPermiso} onFinish={asociarPermiso} layout="vertical">
                     <Form.Item
-                      name="nombreUsuario"
+                      name="email"
                       label={translationService.translate('seleccioneUsuario')}
                       rules={[{ required: true, message: translationService.translate('seleccioneUsuario') }]}
                     >
                       <Select placeholder={translationService.translate('seleccioneUsuario')}>
                         {usuarios.map((usuario) => (
-                          <Option key={usuario.nombreUsuario} value={usuario.nombreUsuario}>
-                            {usuario.nombreUsuario}
+                          <Option key={usuario.email} value={usuario.email}>
+                            {usuario.email}
                           </Option>
                         ))}
                       </Select>
@@ -384,7 +377,7 @@ const Permisos = () => {
                 <Card title={translationService.translate('quitarPermisoUsuario')} bordered={false}>
                   <Form form={formQuitarPermiso} onFinish={quitarPermiso} layout="vertical">
                     <Form.Item
-                      name="nombreUsuario"
+                      name="email"
                       label={translationService.translate('seleccioneUsuario')}
                       rules={[{ required: true, message: translationService.translate('seleccioneUsuario') }]}
                     >
@@ -393,8 +386,8 @@ const Permisos = () => {
                         onChange={handleUsuarioSeleccionado}
                       >
                         {usuarios.map((usuario) => (
-                          <Option key={usuario.nombreUsuario} value={usuario.nombreUsuario}>
-                            {usuario.nombreUsuario}
+                          <Option key={usuario.email} value={usuario.email}>
+                            {usuario.email}
                           </Option>
                         ))}
                       </Select>
